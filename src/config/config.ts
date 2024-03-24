@@ -17,7 +17,8 @@ const siteConfig = {
     category: "Q&A",
     categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
     dataMapping: "pathname" as "pathname",
-  }
+  },
+  umamiWebsiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
 };
 
 export default siteConfig;
