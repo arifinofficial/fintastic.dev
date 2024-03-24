@@ -17,17 +17,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
-    url: './',
+    url: "./",
     siteName: siteConfig.title,
     images: [siteConfig.socialBanner],
     locale: "id",
-    type: "website"
+    type: "website",
   },
   robots: {
     index: true,
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    }
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   twitter: {
     title: siteConfig.title,
-    card: 'summary_large_image',
-    images: [siteConfig.socialBanner]
-  }
+    card: "summary_large_image",
+    images: [siteConfig.socialBanner],
+  },
 };
 
 export default function RootLayout({
@@ -59,13 +59,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/an-old-hope.min.css"
-          integrity="sha512-t47CjkEB5hx4FojnE73dBLwgrgvLBpgsHvB40ycK3cYPkLwEp7qNHyRpRDA3/zVVAAOUPJwbMVJq3uJrBqpHVQ=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
+        <script
+          defer
+          src="https://analytics.us.umami.is/script.js"
+          data-website-id="4b1e6543-11f4-413f-9a31-c775b8949aae"
+        ></script>
       </head>
       <body>
         <ThemeProviders>

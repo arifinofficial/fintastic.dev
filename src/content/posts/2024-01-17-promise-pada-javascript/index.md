@@ -10,6 +10,7 @@ meta:
   title: Promise Pada Javascript
   description: Promise pada Javascript adalah sebuah mekanisme yang mempermudah kita melakukan operasi asynchronous secara efisien dan mudah dibandingkan menggunakan callback
   socialBanner: https://res.cloudinary.com/di2q89ggu/image/upload/v1711265134/fintastic.dev/promise-pada-javascript_2_mwbgf1.jpg
+path: src/content/posts/2024-01-17-promise-pada-javascript/index.md
 ---
 
 Mungkin kalian pernah mendengar istilah dari “callback hell”?

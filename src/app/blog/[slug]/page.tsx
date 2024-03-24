@@ -6,6 +6,8 @@ import { slugify } from "@/utils/stringFormat";
 import Tag from "@/components/Tag";
 import Link from "@/components/Link";
 import SEO from "@/utils/SEO";
+import Comment from "@/components/Comment";
+import { discussUrl, editUrl } from "@/utils/stringFormat";
 
 interface PostProps {
   params: {
@@ -18,14 +20,14 @@ const getPostBySlug = (slug: string) => {
 };
 
 export const generateMetadata = ({ params }: PostProps): Metadata => {
-  console.log(params.slug)
+  console.log(params.slug);
   const post = getPostBySlug(params.slug);
   if (post == null) return {};
   return SEO({
     title: post.meta.title,
     slug: post.permalink,
     description: post.meta.description,
-    image: post.meta.socialBanner
+    image: post.meta.socialBanner,
   });
 };
 
@@ -104,16 +106,18 @@ export default async function Page({ params }: PostProps) {
               <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
             </div>
             <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
-              <Link href={"/"} rel="nofollow">
+              <Link href={discussUrl(post.permalink)} rel="nofollow">
                 Discuss on Twitter
               </Link>
               {` • `}
-              <Link href={"/"}>View on GitHub</Link>
+              <Link href={editUrl(post.path)}>View on GitHub</Link>
             </div>
             <div
               className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
               id="comment"
-            ></div>
+            >
+              <Comment />
+            </div>
           </div>
           <footer>
             <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">

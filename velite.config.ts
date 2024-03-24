@@ -34,6 +34,7 @@ const posts = defineCollection({
       meta: meta,
       metadata: s.metadata(),
       content: s.markdown(),
+      path: s.string()
     })
     .transform((data) => ({ ...data, permalink: `/blog/${data.slug}` })),
 });
