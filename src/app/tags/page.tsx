@@ -1,5 +1,13 @@
 import { tags } from "#site/content";
 import Tag from "@/components/Tag";
+import siteConfig from "@/config/config";
+import SEO from "@/utils/SEO";
+
+export const metadata = SEO({
+  title: "Tags",
+  slug: "/tags",
+  description: siteConfig.description,
+});
 
 const Page = async () => {
   return (
@@ -14,7 +22,11 @@ const Page = async () => {
         {tags.map((tag) => {
           return (
             <div key={tag.slug} className="mb-2 mr-5 mt-2">
-              <Tag text={tag.name} permalink={tag.permalink} total={tag.posts} />
+              <Tag
+                text={tag.name}
+                permalink={tag.permalink}
+                total={tag.posts}
+              />
             </div>
           );
         })}

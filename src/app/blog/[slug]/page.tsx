@@ -5,6 +5,7 @@ import { posts } from "#site/content";
 import { slugify } from "@/utils/stringFormat";
 import Tag from "@/components/Tag";
 import Link from "@/components/Link";
+import SEO from "@/utils/SEO";
 
 interface PostProps {
   params: {
@@ -17,9 +18,15 @@ const getPostBySlug = (slug: string) => {
 };
 
 export const generateMetadata = ({ params }: PostProps): Metadata => {
+  console.log(params.slug)
   const post = getPostBySlug(params.slug);
   if (post == null) return {};
-  return { title: post.meta.title, description: post.meta.description };
+  return SEO({
+    title: post.meta.title,
+    slug: post.permalink,
+    description: post.meta.description,
+    image: post.meta.socialBanner
+  });
 };
 
 export const generateStaticParams = (): PostProps["params"][] => {
@@ -103,11 +110,10 @@ export default async function Page({ params }: PostProps) {
               {` • `}
               <Link href={"/"}>View on GitHub</Link>
             </div>
-              <div
-                className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
-                id="comment"
-              >
-              </div>
+            <div
+              className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
+              id="comment"
+            ></div>
           </div>
           <footer>
             <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">

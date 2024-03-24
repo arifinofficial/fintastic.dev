@@ -2,10 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { posts, tags } from "#site/content";
 import { slugify } from "@/utils/stringFormat";
+import SEO from "@/utils/SEO";
 import Tag from "@/components/Tag";
+import siteConfig from "@/config/config";
+
+export const metadata = SEO({
+  title: "Blog",
+  slug: "/blog",
+  description: siteConfig.description,
+});
 
 const Page = async () => {
-
   return (
     <div className="flex sm:space-x-24">
       <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
@@ -60,7 +67,11 @@ const Page = async () => {
                       </h2>
                       <div className="flex flex-wrap">
                         {post.tags.map((tag) => (
-                          <Tag key={tag} permalink={`/tags/${slugify(tag)}`} text={tag} />
+                          <Tag
+                            key={tag}
+                            permalink={`/tags/${slugify(tag)}`}
+                            text={tag}
+                          />
                         ))}
                       </div>
                     </div>

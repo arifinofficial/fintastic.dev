@@ -5,6 +5,7 @@ import Link from "next/link";
 import { posts, tags } from "#site/content";
 import { slugify } from "@/utils/stringFormat";
 import Tag from "@/components/Tag";
+import SEO from "@/utils/SEO";
 
 interface TagProps {
   params: {
@@ -15,13 +16,21 @@ interface TagProps {
 const getPostByTag = (slug: string) => {
   const tag = tags.find((x) => x.slug === slug);
   if (!tag) return null;
-  return posts.find((post) => post.tags.includes(tag.name));
+  return posts.filter((post) => post.tags.includes(tag.name));
 };
 
+const getTag = (slug: string) => {
+  return tags.find((x) => x.slug === slug);
+}
+
 export const generateMetadata = ({ params }: TagProps): Metadata => {
-  const post = getPostByTag(params.slug);
-  if (post == null) return {};
-  return { title: post.meta.title, description: post.meta.description };
+  const tag = getTag(params.slug);
+  if (tag == null) return {};
+  return SEO({
+    title: tag.name,
+    slug: tag.permalink,
+    description: `Posts related to the ${tag.name} tag`,
+  });
 };
 
 export const generateStaticParams = (): TagProps["params"][] => {
@@ -31,9 +40,9 @@ export const generateStaticParams = (): TagProps["params"][] => {
 };
 
 const Page = async ({ params }: TagProps) => {
-  const post = getPostByTag(params.slug);
+  const posts = getPostByTag(params.slug);
 
-  if (post == null) notFound();
+  if (posts == null) notFound();
   return (
     <div className="flex sm:space-x-24">
       <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">

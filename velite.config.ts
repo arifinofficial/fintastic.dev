@@ -4,6 +4,7 @@ import { defineCollection, defineConfig, s } from "velite";
 const meta = s.object({
   title: s.string(),
   description: s.string().max(160),
+  socialBanner: s.string()
 });
 
 const tags = defineCollection({
